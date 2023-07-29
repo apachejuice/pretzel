@@ -1,9 +1,11 @@
 package dev.apachejuice.pretzel.compiler
 
-fun main(args: Array<String>) {
-    println("Hello World!")
+import dev.apachejuice.pretzel.compiler.scanner.PretzelScanner
+import java.io.StringReader
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    val s = PretzelScanner(StringReader(args[0]));
+    while (!s.yyatEOF()) {
+        println(s.yylex())
+    }
 }
